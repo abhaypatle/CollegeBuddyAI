@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Placement Results - College Buddy AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card" style="max-width: 450px; text-align: center;">
+        <h1>💼 Placement Probability</h1>
+        <p>Your calculated chance of campus recruitment is:</p>
+
+        <div style="margin: 30px 0;">
+            <div style="font-size: 64px; font-weight: 800; color: var(--primary-color); line-height: 1;">
+                {{ chance }}
+            </div>
+            <p style="margin-top: 10px; font-size: 14px; font-weight: 500; color: var(--text-secondary);">
+                Keep building projects and preparing DSA concepts!
+            </p>
+        </div>
+
+        <div>
+            <a href="/placement" class="btn-secondary" style="display: inline-block; padding: 10px 20px; border-radius: 8px; font-weight: bold; text-decoration: none;">Check Again</a>
+            <a href="/dashboard" style="display: inline-block; margin-left: 15px; font-weight: bold;">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

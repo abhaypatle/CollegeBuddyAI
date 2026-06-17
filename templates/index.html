@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Predictor - College Buddy AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="card">
+
+    <h1>🎓 College Predictor</h1>
+
+    <form action="/result" method="POST">
+
+        <label>Exam Type</label>
+        <select name="exam" required>
+            <option value="">Select Exam</option>
+            <option value="MHT-CET">MHT-CET</option>
+            <option value="JEE">JEE Main</option>
+        </select>
+
+        <label>City Preference</label>
+        <select name="city" required>
+            <option value="">Select City</option>
+            <option>Pune</option>
+            <option>Mumbai</option>
+            <option>Nagpur</option>
+            <option>Gondia</option>
+            <option>Amravati</option>
+            <option>Sangli</option>
+            <option>Wardha</option>
+            <option>Jalgaon</option>
+        </select>
+
+        <label>Category</label>
+        <select name="category" required>
+            <option value="">Select Category</option>
+            <option>OPEN</option>
+            <option>OBC</option>
+            <option>SC</option>
+            <option>ST</option>
+            <option>EWS</option>
+            <option>NT</option>
+            <option>SBC</option>
+        </select>
+
+        <label>Branch</label>
+        <select name="branch" required>
+            <option value="">Select Branch</option>
+            <option>CSE</option>
+            <option>IT</option>
+            <option>AIDS</option>
+            <option>ENTC</option>
+            <option>MECH</option>
+        </select>
+
+        <label>Percentile</label>
+        <input type="number"
+               name="percentile"
+               step="0.01"
+               min="0"
+               max="100"
+               placeholder="Enter Percentile"
+               required>
+
+        <button type="submit">
+            🚀 Predict Colleges
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

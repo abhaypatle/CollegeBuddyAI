@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Results - College Buddy AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card" style="max-width: 600px;">
+        <h1 style="text-align: center; display: block; margin-bottom: 24px;">🎓 Prediction Results</h1>
+        
+        <!-- Safe Colleges -->
+        <div class="result-group">
+            <span class="result-badge badge-safe">🟢 Safe Colleges</span>
+            {% if safe %}
+                {% for c in safe %}
+                <div class="college-item">
+                    <span>{{ c.college }}</span>
+                    <span class="college-city">{{ c.city }} (Cutoff: {{ c.cutoff }})</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="font-size: 14px; font-style: italic; margin-left: 8px;">No colleges found in this category.</p>
+            {% endif %}
+        </div>
+
+        <!-- Target Colleges -->
+        <div class="result-group">
+            <span class="result-badge badge-target">🟡 Target Colleges</span>
+            {% if target %}
+                {% for c in target %}
+                <div class="college-item">
+                    <span>{{ c.college }}</span>
+                    <span class="college-city">{{ c.city }} (Cutoff: {{ c.cutoff }})</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="font-size: 14px; font-style: italic; margin-left: 8px;">No colleges found in this category.</p>
+            {% endif %}
+        </div>
+
+        <!-- Dream Colleges -->
+        <div class="result-group">
+            <span class="result-badge badge-dream">🔴 Dream Colleges</span>
+            {% if dream %}
+                {% for c in dream %}
+                <div class="college-item">
+                    <span>{{ c.college }}</span>
+                    <span class="college-city">{{ c.city }} (Cutoff: {{ c.cutoff }})</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="font-size: 14px; font-style: italic; margin-left: 8px;">No colleges found in this category.</p>
+            {% endif %}
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/predict" class="btn-secondary" style="display: inline-block; padding: 10px 20px; border-radius: 8px; font-weight: bold; text-decoration: none;">Predict Again</a>
+            <a href="/dashboard" style="display: inline-block; margin-left: 15px; font-weight: bold;">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

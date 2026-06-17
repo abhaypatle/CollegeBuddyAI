@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scholarship Results - College Buddy AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card" style="max-width: 450px; text-align: center;">
+        <h1>💰 Available Scholarships</h1>
+        <p>Based on your profile, you are eligible for the following scholarship schemes:</p>
+
+        <div style="margin: 20px 0; text-align: left;">
+            {% if scholarships %}
+                {% for s in scholarships %}
+                <div class="college-item" style="justify-content: flex-start; gap: 10px;">
+                    <span style="font-size: 20px;">🏆</span>
+                    <span style="font-size: 15px; font-weight: 600; color: var(--success-color);">{{ s }}</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-error" style="margin-bottom: 0;">
+                    ❌ No scholarships found matching your criteria.
+                </div>
+            {% endif %}
+        </div>
+
+        <div style="margin-top: 30px;">
+            <a href="/scholarship" class="btn-secondary" style="display: inline-block; padding: 10px 20px; border-radius: 8px; font-weight: bold; text-decoration: none;">Check Again</a>
+            <a href="/dashboard" style="display: inline-block; margin-left: 15px; font-weight: bold;">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

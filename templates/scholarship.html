@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scholarship Predictor - College Buddy AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card" style="max-width: 400px; text-align: center;">
+        <h1>💰 Scholarship Predictor</h1>
+        <p>Find out which scholarships you are eligible for.</p>
+
+        <form action="/scholarship_result" method="POST" style="text-align: left;">
+            <label for="percentile">Enter Percentile</label>
+            <input type="number" id="percentile" name="percentile" placeholder="Percentile (e.g. 95)" min="0" max="100" step="0.0001" required>
+
+            <label for="income">Annual Family Income (INR)</label>
+            <input type="number" id="income" name="income" placeholder="Annual Income (e.g. 150000)" required>
+
+            <button type="submit" style="margin-top: 15px;">Check Scholarships</button>
+        </form>
+        
+        <p style="margin-top: 20px; font-size: 14px; margin-bottom: 0;">
+            <a href="/dashboard">⬅ Back to Dashboard</a>
+        </p>
+    </div>
+</body>
+</html>

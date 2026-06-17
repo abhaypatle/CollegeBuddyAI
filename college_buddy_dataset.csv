@@ -1,0 +1,101 @@
+id,name,course,score
+COEP Pune,Pune,CSE,99
+VJTI Mumbai,Mumbai,CSE,99
+PICT Pune,Pune,CSE,98
+SPIT Mumbai,Mumbai,CSE,98
+Walchand Sangli,Sangli,CSE,97
+VIT Pune,Pune,CSE,96
+PCCOE Pune,Pune,CSE,95
+Cummins Pune,Pune,CSE,95
+IIIT Nagpur,Nagpur,CSE,94
+DJ Sanghvi Mumbai,Mumbai,CSE,94
+KJ Somaiya Mumbai,Mumbai,CSE,93
+VESIT Mumbai,Mumbai,CSE,93
+Fr Agnel Mumbai,Mumbai,CSE,92
+Vishwakarma Pune,Pune,CSE,92
+AISSMS Pune,Pune,CSE,91
+MIT WPU Pune,Pune,CSE,91
+Sinhgad Pune,Pune,CSE,90
+RCOEM Nagpur,Nagpur,CSE,90
+YCCE Nagpur,Nagpur,CSE,89
+PCCOE Pune,Pune,IT,89
+VIT Pune,Pune,IT,88
+PICT Pune,Pune,IT,88
+SPIT Mumbai,Mumbai,IT,87
+Walchand Sangli,Sangli,IT,87
+IIIT Nagpur,Nagpur,IT,86
+PCCOE Pune,Pune,AIDS,86
+Cummins Pune,Pune,AIDS,85
+AISSMS Pune,Pune,AIDS,85
+Vishwakarma Pune,Pune,AIDS,84
+MIT WPU Pune,Pune,AIDS,84
+RCOEM Nagpur,Nagpur,AIDS,83
+YCCE Nagpur,Nagpur,AIDS,83
+PICT Pune,Pune,ENTC,82
+VIT Pune,Pune,ENTC,82
+PCCOE Pune,Pune,ENTC,81
+RCOEM Nagpur,Nagpur,ENTC,81
+YCCE Nagpur,Nagpur,ENTC,80
+AISSMS Pune,Pune,ENTC,80
+MIT WPU Pune,Pune,ENTC,79
+Sinhgad Pune,Pune,ENTC,79
+Walchand Sangli,Sangli,MECH,78
+VIT Pune,Pune,MECH,78
+PICT Pune,Pune,MECH,77
+PCCOE Pune,Pune,MECH,77
+RCOEM Nagpur,Nagpur,MECH,76
+YCCE Nagpur,Nagpur,MECH,76
+AISSMS Pune,Pune,MECH,75
+Vishwakarma Pune,Pune,MECH,75
+MIT WPU Pune,Pune,MECH,75
+Sinhgad Pune,Pune,MECH,75
+JD College Nagpur,Nagpur,CSE,30
+TGPCET Nagpur,Nagpur,CSE,29
+St Vincent Pallotti,Nagpur,CSE,28
+Priyadarshini Nagpur,Nagpur,CSE,27
+Suryodaya Nagpur,Nagpur,CSE,26
+Anjuman Nagpur,Nagpur,CSE,25
+Sipna Amravati,Amravati,CSE,24
+SSBT Jalgaon,Jalgaon,CSE,23
+KDK Nagpur,Nagpur,CSE,22
+Rajiv Gandhi Chandrapur,Chandrapur,CSE,21
+Manoharbhai Patel Gondia,Gondia,CSE,20
+DBATU Lonere,Raigad,CSE,19
+Bapurao Deshmukh Wardha,Wardha,CSE,18
+GCOEA Amravati,Amravati,CSE,17
+JDIET Yavatmal,Yavatmal,CSE,16
+Pankaj Laddha Buldhana,Buldhana,CSE,15
+JD College Nagpur,Nagpur,IT,14
+TGPCET Nagpur,Nagpur,IT,13
+St Vincent Pallotti,Nagpur,IT,12
+Priyadarshini Nagpur,Nagpur,IT,11
+Suryodaya Nagpur,Nagpur,IT,10
+Anjuman Nagpur,Nagpur,IT,9
+Sipna Amravati,Amravati,IT,8
+SSBT Jalgaon,Jalgaon,IT,7
+KDK Nagpur,Nagpur,IT,6
+Rajiv Gandhi Chandrapur,Chandrapur,IT,5
+Manoharbhai Patel Gondia,Gondia,IT,4
+DBATU Lonere,Raigad,IT,3
+Bapurao Deshmukh Wardha,Wardha,IT,2
+GCOEA Amravati,Amravati,IT,1
+JD College Nagpur,Nagpur,AIDS,30
+TGPCET Nagpur,Nagpur,AIDS,29
+St Vincent Pallotti,Nagpur,AIDS,28
+Priyadarshini Nagpur,Nagpur,AIDS,27
+Suryodaya Nagpur,Nagpur,AIDS,26
+Anjuman Nagpur,Nagpur,AIDS,25
+Sipna Amravati,Amravati,AIDS,24
+SSBT Jalgaon,Jalgaon,AIDS,23
+KDK Nagpur,Nagpur,AIDS,22
+Rajiv Gandhi Chandrapur,Chandrapur,AIDS,21
+Manoharbhai Patel Gondia,Gondia,AIDS,20
+DBATU Lonere,Raigad,AIDS,19
+Bapurao Deshmukh Wardha,Wardha,AIDS,18
+GCOEA Amravati,Amravati,AIDS,17
+JDIET Yavatmal,Yavatmal,AIDS,16
+Pankaj Laddha Buldhana,Buldhana,AIDS,15
+JD College Nagpur,Nagpur,MECH,14
+TGPCET Nagpur,Nagpur,MECH,13
+St Vincent Pallotti,Nagpur,MECH,12
+Priyadarshini Nagpur,Nagpur,MECH,11

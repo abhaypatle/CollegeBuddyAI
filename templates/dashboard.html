@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - College Buddy AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card" style="max-width: 500px; text-align: center;">
+        <h1>👋 Welcome, {{ name }}!</h1>
+        <p>Your ultimate academic decision companion is ready.</p>
+        
+        <div class="grid-container">
+            <a href="/predict"><button>🎓 College Predictor</button></a>
+            <a href="/scholarship"><button>💰 Scholarship Predictor</button></a>
+            <a href="/placement"><button>💼 Placement Predictor</button></a>
+            <a href="/history"><button>📜 Prediction History</button></a>
+            <a href="/pdf"><button>📄 PDF Report</button></a>
+            <a href="/logout"><button class="logout-btn">🚪 Logout</button></a>
+        </div>
+    </div>
+</body>
+</html>
