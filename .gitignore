@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+venv/
+collegebuddy.db
+uploads/
+exports/

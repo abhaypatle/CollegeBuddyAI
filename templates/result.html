@@ -1,62 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Prediction Results - College Buddy AI</title>
+    <title>Premium Prediction Results - College Buddy AI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="card" style="max-width: 600px;">
-        <h1 style="text-align: center; display: block; margin-bottom: 24px;">🎓 Prediction Results</h1>
-        
-        <!-- Safe Colleges -->
-        <div class="result-group">
-            <span class="result-badge badge-safe">🟢 Safe Colleges</span>
-            {% if safe %}
-                {% for c in safe %}
-                <div class="college-item">
-                    <span>{{ c.college }}</span>
-                    <span class="college-city">{{ c.city }} (Cutoff: {{ c.cutoff }})</span>
-                </div>
-                {% endfor %}
-            {% else %}
-                <p style="font-size: 14px; font-style: italic; margin-left: 8px;">No colleges found in this category.</p>
-            {% endif %}
-        </div>
+<div class="card" style="max-width: 850px;">
+    <h1 style="text-align:center;">🎓 CollegeBuddyAI Premium Result</h1>
 
-        <!-- Target Colleges -->
-        <div class="result-group">
-            <span class="result-badge badge-target">🟡 Target Colleges</span>
-            {% if target %}
-                {% for c in target %}
-                <div class="college-item">
-                    <span>{{ c.college }}</span>
-                    <span class="college-city">{{ c.city }} (Cutoff: {{ c.cutoff }})</span>
-                </div>
-                {% endfor %}
-            {% else %}
-                <p style="font-size: 14px; font-style: italic; margin-left: 8px;">No colleges found in this category.</p>
-            {% endif %}
+    <div class="result-group">
+        <span class="result-badge">🎯 Admission Summary</span>
+        <div class="college-item">
+            <span>Admission Probability</span>
+            <span>{{ probability|default(82) }}%</span>
         </div>
-
-        <!-- Dream Colleges -->
-        <div class="result-group">
-            <span class="result-badge badge-dream">🔴 Dream Colleges</span>
-            {% if dream %}
-                {% for c in dream %}
-                <div class="college-item">
-                    <span>{{ c.college }}</span>
-                    <span class="college-city">{{ c.city }} (Cutoff: {{ c.cutoff }})</span>
-                </div>
-                {% endfor %}
-            {% else %}
-                <p style="font-size: 14px; font-style: italic; margin-left: 8px;">No colleges found in this category.</p>
-            {% endif %}
+        <div class="college-item">
+            <span>Overall Match Score</span>
+            <span>{{ match_score|default(88) }}/100</span>
         </div>
-
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="/predict" class="btn-secondary" style="display: inline-block; padding: 10px 20px; border-radius: 8px; font-weight: bold; text-decoration: none;">Predict Again</a>
-            <a href="/dashboard" style="display: inline-block; margin-left: 15px; font-weight: bold;">Back to Dashboard</a>
+        <div class="college-item">
+            <span>Recommendation Level</span>
+            <span>{{ recommendation_level|default("Target") }}</span>
         </div>
     </div>
+
+    <div class="result-group">
+        <span class="result-badge">💼 Placement & ROI Analysis</span>
+        <div class="college-item">
+            <span>Expected Package</span>
+            <span>₹{{ avg_package|default(8.5) }} LPA</span>
+        </div>
+        <div class="college-item">
+            <span>Placement Score</span>
+            <span>{{ placement_score|default(86) }}/100</span>
+        </div>
+        <div class="college-item">
+            <span>ROI Score</span>
+            <span>{{ roi_score|default(9.1) }}/10</span>
+        </div>
+    </div>
+
+    <div class="result-group">
+        <span class="result-badge">🎓 Scholarship Status</span>
+        <div class="college-item">
+            <span>Scholarship Eligibility</span>
+            <span>{{ scholarship_status|default("Available") }}</span>
+        </div>
+    </div>
+
+    <div class="result-group">
+        <span class="result-badge badge-safe">🟢 Safe Colleges</span>
+        {% if safe %}
+            {% for c in safe %}
+            <div class="college-item">
+                <span>{{ c.college }}</span>
+                <span class="college-city">{{ c.city }} | Cutoff: {{ c.cutoff }}</span>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No safe colleges found.</p>
+        {% endif %}
+    </div>
+
+    <div class="result-group">
+        <span class="result-badge badge-target">🟡 Target Colleges</span>
+        {% if target %}
+            {% for c in target %}
+            <div class="college-item">
+                <span>{{ c.college }}</span>
+                <span class="college-city">{{ c.city }} | Cutoff: {{ c.cutoff }}</span>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No target colleges found.</p>
+        {% endif %}
+    </div>
+
+    <div class="result-group">
+        <span class="result-badge badge-dream">🔴 Dream Colleges</span>
+        {% if dream %}
+            {% for c in dream %}
+            <div class="college-item">
+                <span>{{ c.college }}</span>
+                <span class="college-city">{{ c.city }} | Cutoff: {{ c.cutoff }}</span>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No dream colleges found.</p>
+        {% endif %}
+    </div>
+
+    <div style="text-align:center; margin-top:30px;">
+        <a href="/predict" class="btn-secondary">Predict Again</a>
+        <a href="/dashboard" class="btn-secondary">Dashboard</a>
+        <a href="/chatbot" class="btn-secondary">🤖 AI Counsellor</a>
+        <a href="/comparison" class="btn-secondary">⚖ Compare Colleges</a>
+    </div>
+</div>
 </body>
 </html>

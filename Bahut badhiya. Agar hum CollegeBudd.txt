@@ -1,0 +1,304 @@
+Bahut badhiya. Agar hum **CollegeBuddyAI** ko properly build karna chahte hain, to coding se pehle ek professional roadmap banate hain. Ye approach industry projects me use hoti hai.
+
+# Phase 1: Requirements Freeze
+
+## Project Goal
+
+Student ko:
+
+* Best college recommendation
+* Admission probability (%)
+* Safe / Target / Dream colleges
+* Placement analysis
+* Scholarship suggestions
+* AI counselling chatbot
+* Career guidance
+
+ek hi platform par provide karna.
+
+---
+
+# Phase 2: MVP Features (Version 1.0)
+
+### Authentication
+
+```text
+✅ Login
+✅ Signup
+✅ Forgot Password
+✅ JWT Authentication
+```
+
+### Student Profile
+
+```text
+✅ Name
+✅ Email
+✅ Phone Number
+✅ Gender
+✅ Category
+✅ City
+```
+
+### Academic Information
+
+```text
+✅ 10th Percentage
+✅ 12th Percentage
+✅ Graduation Field
+✅ Course Name
+```
+
+### Exam Information
+
+```text
+✅ CET
+✅ JEE
+✅ NEET
+✅ CLAT
+
+Score
+Percentile
+Rank
+```
+
+### Preferences
+
+```text
+✅ Preferred Branch
+✅ Preferred City
+✅ Budget
+✅ Hostel Required
+```
+
+### AI Prediction
+
+```text
+✅ Admission Probability
+✅ College Recommendation
+✅ Safe / Target / Dream
+```
+
+---
+
+# Phase 3: Tech Stack
+
+## Frontend
+
+```text
+React.js
+Tailwind CSS
+ShadCN UI
+Axios
+React Router
+```
+
+## Backend
+
+```text
+FastAPI
+Pydantic
+SQLAlchemy
+JWT
+```
+
+## Database
+
+```text
+PostgreSQL
+```
+
+## Machine Learning
+
+```text
+Python
+Pandas
+Scikit-learn
+XGBoost
+```
+
+## AI Chatbot
+
+```text
+OpenAI API
+LangChain
+FAISS
+```
+
+## Deployment
+
+```text
+Docker
+AWS
+GitHub Actions
+```
+
+---
+
+# Phase 4: Folder Structure
+
+```text
+CollegeBuddyAI/
+
+frontend/
+backend/
+database/
+ml/
+chatbot/
+docs/
+deployment/
+```
+
+---
+
+# Database Design (Core Tables)
+
+### Users
+
+```sql
+users
+```
+
+| Field    | Type    |
+| -------- | ------- |
+| id       | UUID    |
+| name     | VARCHAR |
+| email    | VARCHAR |
+| phone    | VARCHAR |
+| password | VARCHAR |
+
+---
+
+### Student Profile
+
+```sql
+student_profile
+```
+
+| Field              | Type    |
+| ------------------ | ------- |
+| user_id            | FK      |
+| tenth_percentage   | FLOAT   |
+| twelfth_percentage | FLOAT   |
+| exam_type          | VARCHAR |
+| percentile         | FLOAT   |
+| rank               | INT     |
+| city               | VARCHAR |
+| branch             | VARCHAR |
+
+---
+
+### Colleges
+
+```sql
+colleges
+```
+
+| Field        | Type    |
+| ------------ | ------- |
+| college_id   | UUID    |
+| college_name | VARCHAR |
+| city         | VARCHAR |
+| branch       | VARCHAR |
+| fees         | FLOAT   |
+| avg_package  | FLOAT   |
+| scholarship  | BOOLEAN |
+
+---
+
+# Dashboard Pages
+
+### Student Dashboard
+
+```text
+🏠 Home
+👤 Profile
+🎓 Recommended Colleges
+📊 Comparison
+💰 Scholarship
+🤖 AI Counsellor
+⚙ Settings
+```
+
+---
+
+# Premium Features (Version 2)
+
+```text
+AI Career Counselor
+Resume Analyzer
+ROI Calculator
+Placement Predictor
+Cutoff Trend Analysis
+WhatsApp Notifications
+College Comparison
+Admission Tracker
+```
+
+---
+
+# First Development Milestone (Week 1)
+
+### Day 1
+
+```text
+Create GitHub Repository
+Setup React Frontend
+Setup FastAPI Backend
+Setup PostgreSQL
+```
+
+### Day 2
+
+```text
+Signup Page
+Login Page
+JWT Authentication
+```
+
+### Day 3
+
+```text
+Student Profile Form
+```
+
+### Day 4
+
+```text
+College Dataset Import
+```
+
+### Day 5
+
+```text
+Prediction API
+```
+
+### Day 6
+
+```text
+Recommendation Engine
+```
+
+### Day 7
+
+```text
+Dashboard UI
+```
+
+## First Deliverable
+
+Week 1 ke end tak:
+
+✅ Login/Signup
+✅ Student Form
+✅ Database Connected
+✅ College Dataset Loaded
+✅ Basic Prediction API
+✅ Dashboard
+
+Ab mujhe batao:
+
+**Tum frontend React + Tailwind se start karna chahte ho ya backend FastAPI + PostgreSQL se?**
+
+Main uske hisab se poora production-level folder structure aur code generate karunga.

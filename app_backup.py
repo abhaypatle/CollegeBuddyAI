@@ -5,22 +5,23 @@ import os
 from reportlab.pdfgen import canvas
 
 app = Flask(__name__)
+
 app.secret_key = "collegebuddyai"
 
+# -------------------------------
+# SAFE CSV LOADING (NO CRASH)
+# -------------------------------
 CSV_FILE = "college_buddy_dataset.csv"
 
 if os.path.exists(CSV_FILE):
     data = pd.read_csv(CSV_FILE)
-    data = data.rename(columns={
-        "id": "college",
-        "name": "city",
-        "course": "branch",
-        "score": "cutoff"
-    })
+    data = data.rename(columns={"id": "college", "name": "city", "course": "branch", "score": "cutoff"})
 else:
     data = pd.DataFrame(columns=["college", "city", "branch", "cutoff"])
 
-
+# -------------------------------
+# DATABASE INIT
+# -------------------------------
 def init_db():
     conn = sqlite3.connect("collegebuddy.db")
     cur = conn.cursor()
@@ -46,20 +47,25 @@ def init_db():
     conn.commit()
     conn.close()
 
-
 init_db()
 
-
+# -------------------------------
+# LOGIN PAGE
+# -------------------------------
 @app.route("/")
 def login():
     return render_template("login.html")
 
-
+# -------------------------------
+# REGISTER PAGE
+# -------------------------------
 @app.route("/register")
 def register():
     return render_template("register.html")
 
-
+# -------------------------------
+# REGISTER USER
+# -------------------------------
 @app.route("/register_user", methods=["POST"])
 def register_user():
     name = request.form["name"]
@@ -76,13 +82,15 @@ def register_user():
         )
         conn.commit()
     except:
-        conn.close()
         return "User already exists ❌"
 
     conn.close()
+
     return redirect("/")
 
-
+# -------------------------------
+# LOGIN USER
+# -------------------------------
 @app.route("/login_user", methods=["POST"])
 def login_user():
     email = request.form["email"]
@@ -105,7 +113,9 @@ def login_user():
 
     return "Invalid Login ❌"
 
-
+# -------------------------------
+# DASHBOARD
+# -------------------------------
 @app.route("/dashboard")
 def dashboard():
     if "user" not in session:
@@ -113,15 +123,16 @@ def dashboard():
 
     return render_template("dashboard.html", name=session["user"])
 
-
+# -------------------------------
+# COLLEGE PREDICTOR PAGE
+# -------------------------------
 @app.route("/predict")
 def predict():
-    if "user" not in session:
-        return redirect("/")
-
     return render_template("index.html")
 
-
+# -------------------------------
+# RESULT LOGIC (SAFE)
+# -------------------------------
 @app.route("/result", methods=["POST"])
 def result():
     if "user" not in session:
@@ -129,30 +140,12 @@ def result():
 
     branch = request.form["branch"]
     percentile = float(request.form["percentile"])
-    city = request.form.get("city", "")
 
-    if not data.empty:
-        filtered = data[data["branch"].str.lower() == branch.lower()]
+    filtered = data[data["branch"].str.lower() == branch.lower()] if not data.empty else pd.DataFrame()
 
-        if city:
-            city_filtered = filtered[filtered["city"].str.lower() == city.lower()]
-            if not city_filtered.empty:
-                filtered = city_filtered
-    else:
-        filtered = pd.DataFrame(columns=["college", "city", "branch", "cutoff"])
-
-    safe = filtered[filtered["cutoff"] <= percentile].sort_values(
-        by="cutoff", ascending=False
-    ).head(5)
-
-    target = filtered[
-        (filtered["cutoff"] > percentile) &
-        (filtered["cutoff"] <= percentile + 5)
-    ].sort_values(by="cutoff", ascending=True).head(5)
-
-    dream = filtered[filtered["cutoff"] > percentile + 5].sort_values(
-        by="cutoff", ascending=True
-    ).head(5)
+    safe = filtered[filtered["cutoff"] <= percentile]
+    target = filtered[(filtered["cutoff"] > percentile) & (filtered["cutoff"] <= percentile + 5)]
+    dream = filtered[filtered["cutoff"] > percentile + 5]
 
     conn = sqlite3.connect("collegebuddy.db")
     cur = conn.cursor()
@@ -165,48 +158,19 @@ def result():
     conn.commit()
     conn.close()
 
-    probability = min(100, round(percentile))
-    match_score = min(100, round((percentile * 0.5) + 40))
-
-    if probability >= 80:
-        recommendation_level = "Safe"
-    elif probability >= 50:
-        recommendation_level = "Target"
-    else:
-        recommendation_level = "Dream"
-
-    placement_score = min(100, round(percentile * 0.85 + 10))
-    avg_package = round(3 + (percentile / 100) * 10, 1)
-    roi_score = round(min(10, avg_package / 1.2), 1)
-
-    if percentile >= 90:
-        scholarship_status = "High Chance"
-    elif percentile >= 75:
-        scholarship_status = "Available"
-    else:
-        scholarship_status = "Limited"
-
     return render_template(
         "result.html",
         safe=safe.to_dict("records"),
         target=target.to_dict("records"),
-        dream=dream.to_dict("records"),
-        probability=probability,
-        match_score=match_score,
-        recommendation_level=recommendation_level,
-        placement_score=placement_score,
-        avg_package=avg_package,
-        roi_score=roi_score,
-        scholarship_status=scholarship_status
+        dream=dream.to_dict("records")
     )
 
-
+# -------------------------------
+# SCHOLARSHIP
+# -------------------------------
 @app.route("/scholarship")
 def scholarship():
-    if "user" not in session:
-        return redirect("/")
     return render_template("scholarship.html")
-
 
 @app.route("/scholarship_result", methods=["POST"])
 def scholarship_result():
@@ -226,13 +190,12 @@ def scholarship_result():
 
     return render_template("scholarship_result.html", scholarships=scholarships)
 
-
+# -------------------------------
+# PLACEMENT
+# -------------------------------
 @app.route("/placement")
 def placement():
-    if "user" not in session:
-        return redirect("/")
     return render_template("placement.html")
-
 
 @app.route("/placement_result", methods=["POST"])
 def placement_result():
@@ -249,7 +212,9 @@ def placement_result():
 
     return render_template("placement_result.html", chance=chance)
 
-
+# -------------------------------
+# HISTORY
+# -------------------------------
 @app.route("/history")
 def history():
     if "user" not in session:
@@ -268,62 +233,9 @@ def history():
 
     return render_template("history.html", rows=rows)
 
-
-@app.route("/chatbot", methods=["GET", "POST"])
-def chatbot():
-    if "user" not in session:
-        return redirect("/")
-
-    answer = ""
-
-    if request.method == "POST":
-        question = request.form["question"].lower()
-
-        if "85" in question and "pune" in question and ("cse" in question or "computer" in question):
-            answer = """
-            Based on 85 percentile, Pune city, and CSE preference:
-
-            Safe Colleges:
-            - Sinhgad Pune
-            - MIT WPU Pune
-
-            Target Colleges:
-            - AISSMS Pune
-            - Vishwakarma Pune
-
-            Dream Colleges:
-            - PICT Pune
-            - PCCOE Pune
-
-            Scholarship: Available
-            Placement Potential: Good
-            """
-
-        elif "cse" in question or "computer" in question:
-            answer = "CSE is a high-demand branch with strong placement scope in software, AI, data science, and cloud roles."
-
-        elif "pune" in question:
-            answer = "Pune is a strong education hub. COEP, PICT, VIT, PCCOE, MIT WPU, and AISSMS are popular options."
-
-        elif "scholarship" in question:
-            answer = "Scholarships depend on percentile, category, family income, and college policy."
-
-        elif "placement" in question:
-            answer = "Placement depends on college, branch, CGPA, skills, internships, and projects."
-
-        else:
-            answer = "Ask about colleges, branches, placement, scholarship, cutoff, city preference, or admission chance."
-
-    return render_template("chatbot/chatbot.html", answer=answer)
-
-@app.route("/comparison")
-def comparison():
-    if "user" not in session:
-        return redirect("/")
-
-    return render_template("comparison.html")
-
-
+# -------------------------------
+# PDF REPORT
+# -------------------------------
 @app.route("/pdf")
 def pdf():
     if "user" not in session:
@@ -332,20 +244,23 @@ def pdf():
     pdf_name = "report.pdf"
     c = canvas.Canvas(pdf_name)
 
-    c.drawString(100, 800, "CollegeBuddyAI Premium Report")
+    c.drawString(100, 800, "College Buddy AI Report")
     c.drawString(100, 770, f"Student: {session['user']}")
-    c.drawString(100, 740, "Features: Admission Prediction, Scholarship, Placement, Safe/Target/Dream")
-
+    
     c.save()
 
     return send_file(pdf_name, as_attachment=True)
 
-
+# -------------------------------
+# LOGOUT
+# -------------------------------
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect("/")
 
-
+# -------------------------------
+# RUN APP
+# -------------------------------
 if __name__ == "__main__":
-    app.run(debug=True)   
+    app.run(debug=True)

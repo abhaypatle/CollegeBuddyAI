@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Counsellor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="card">
+
+    <h1>🤖 CollegeBuddyAI Counsellor</h1>
+
+    <form method="POST">
+
+        <textarea
+            name="question"
+            rows="4"
+            placeholder="Ask something...
+Can I get CSE in Pune with 85 percentile?"
+            required></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Ask AI
+        </button>
+
+    </form>
+
+    {% if answer %}
+    <div class="result-group">
+        <h3>AI Response</h3>
+        <p>{{ answer }}</p>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

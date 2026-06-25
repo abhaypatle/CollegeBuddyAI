@@ -279,42 +279,26 @@ def chatbot():
     if request.method == "POST":
         question = request.form["question"].lower()
 
-        if "85" in question and "pune" in question and ("cse" in question or "computer" in question):
-            answer = """
-            Based on 85 percentile, Pune city, and CSE preference:
-
-            Safe Colleges:
-            - Sinhgad Pune
-            - MIT WPU Pune
-
-            Target Colleges:
-            - AISSMS Pune
-            - Vishwakarma Pune
-
-            Dream Colleges:
-            - PICT Pune
-            - PCCOE Pune
-
-            Scholarship: Available
-            Placement Potential: Good
-            """
-
-        elif "cse" in question or "computer" in question:
+        if "cse" in question or "computer" in question:
             answer = "CSE is a high-demand branch with strong placement scope in software, AI, data science, and cloud roles."
 
         elif "pune" in question:
-            answer = "Pune is a strong education hub. COEP, PICT, VIT, PCCOE, MIT WPU, and AISSMS are popular options."
+            answer = "Pune is a strong education hub. For engineering, colleges like COEP, PICT, VIT, PCCOE, and MIT WPU are popular options."
 
         elif "scholarship" in question:
-            answer = "Scholarships depend on percentile, category, family income, and college policy."
+            answer = "Scholarship chances depend on percentile, category, income, and college policy. Above 75 percentile, private scholarships may be available."
 
         elif "placement" in question:
-            answer = "Placement depends on college, branch, CGPA, skills, internships, and projects."
+            answer = "Placement depends on college, branch, CGPA, skills, internships, and projects. CSE/IT usually has better placement opportunities."
+
+        elif "85" in question:
+            answer = "With 85 percentile, you can target good private colleges. For Pune CSE, Safe/Target options may include Sinhgad, AISSMS, MIT WPU depending on cutoff."
 
         else:
-            answer = "Ask about colleges, branches, placement, scholarship, cutoff, city preference, or admission chance."
+            answer = "Ask about college admission, CSE, Pune colleges, scholarship, placement, cutoff, or branch selection."
 
     return render_template("chatbot/chatbot.html", answer=answer)
+
 
 @app.route("/comparison")
 def comparison():
@@ -348,4 +332,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)   
+    app.run(debug=True)
